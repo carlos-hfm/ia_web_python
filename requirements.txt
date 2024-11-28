@@ -1,0 +1,11 @@
+pandas
+pubchempy
+tqdm
+numpy
+#itertools
+scikit-learn
+lightgbm
+matplotlib
+seaborn
+pingouin
+imbalanced-learn
