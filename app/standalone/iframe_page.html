@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IFRAME Ketcher</title>
+    </head>
+    <body>
+        <h1>Ketcher Viewer</h1>
+        <iframe id="ifKetcher" src="/ketcher" width="100%" height="500px"></iframe>
+        <button id="sendButton">Enviar Molécula</button>
+
+        <script>
+            document.getElementById('sendButton').addEventListener('click', async () => {
+                let ketcherFrame = document.getElementById('ifKetcher');
+                let ketcher = null;
+    
+                // Obter o objeto Ketcher do iframe
+                if ('contentDocument' in ketcherFrame) {
+                    ketcher = ketcherFrame.contentWindow.ketcher;
+                } else {
+                    ketcher = document.frames['ifKetcher'].window.ketcher;
+                }
+    
+                if (ketcher) {
+                    try {
+                        // Capturar a molécula como SMILES
+                        const moleculeSmiles = await ketcher.getSmiles();
+                        //alert(moleculeSmiles)
+    
+                        // Fazer a requisição ao backend
+                        const response = await fetch('/api/predict', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ smiles: moleculeSmiles })
+                        });
+    
+                        const result = await response.json();
+                        alert(`Predição recebida: ${result.prediction}`);
+                    } catch (error) {
+                        console.error('Erro:', error);
+                    }
+                } else {
+                    alert('Erro ao carregar o Ketcher.');
+                }
+            });
+        </script>
+    </body>
+</html>
