@@ -1,0 +1,46 @@
+iframe {
+    border: 3px solid #007BFF;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+    font-size: 2em;
+    color: #033181;
+    text-align: center;
+    margin: 20px 0;
+}
+
+#instruction {
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    color: #2b1616;
+    text-align: center;
+    margin: 20px 0;
+}
+
+button {
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    font-family: Arial, sans-serif;
+    font-size: 1.5em;
+    color: #2b1616;
+    text-align: center;
+    padding-top: 20px;
+    margin: 10px 0;
+}

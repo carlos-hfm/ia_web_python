@@ -2,13 +2,16 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>IFRAME Ketcher</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
         <h1>Ketcher Viewer</h1>
+        <p id="instruction"> Insira uma estrutura molecular e clique no botão "Send" para fazer a predição.</p>
         <iframe id="ifKetcher" src="/ketcher" width="100%" height="500px"></iframe>
-        <button id="sendButton">Enviar Molécula</button>
+        <br>
+        <button id="sendButton">Send</button>
+        <p id="result"></p>
 
         <script>
             document.getElementById('sendButton').addEventListener('click', async () => {
@@ -37,7 +40,9 @@
     
                         const result_json = await response.json();
                         const pred = result_json.prediction;     
-                        alert(pred);
+                        //alert(pred);
+                        document.getElementById('result').innerText = `Prediction: ${pred}`;
+                        document.getElementById('result').style.visibility = 'visible';
                     } catch (error) {
                         console.error('Erro:', error);
                     }
