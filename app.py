@@ -1,5 +1,5 @@
 from flask import Flask, send_from_directory, render_template, jsonify, request
-from .. import prediction
+import prediction
 
 app = Flask(__name__, template_folder='standalone', static_folder='standalone/static')
 
@@ -15,7 +15,7 @@ def static_files(path):
 def iframe():
     return render_template("iframe_page.html")
 
-@app.route('/api/predict', methods='[POST]')
+@app.route('/api/predict', methods=['POST'])
 def predict():
     try:
         data_json = request.get_json()
@@ -23,9 +23,9 @@ def predict():
             return jsonify({'error': 'erro'})
         
         molecule_smiles = data_json['smiles']
-        prediction = prediction.prediction(molecule_smiles)
+        pred = prediction.prediction(molecule_smiles)
         
-        return jsonify({'prediction': prediction})
+        return jsonify({'prediction': str(pred)})
     except:
         return jsonify({'error': 'erro'})
 

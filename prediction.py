@@ -10,6 +10,7 @@ def prediction(molecule_smiles, model=model, desc_gen=desc_gen):
         desc = desc_gen.from_smiles(molecule_smiles)
         desc = np.array(desc).reshape(1, -1)
         pred = model.predict(desc)
+        print(pred[0])
         return pred[0]
     except Exception as e:
         print(f"An error occurred: {e}")

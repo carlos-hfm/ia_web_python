@@ -35,8 +35,9 @@
                             body: JSON.stringify({ smiles: moleculeSmiles })
                         });
     
-                        const result = await response.json();
-                        alert(`Predição recebida: ${result.prediction}`);
+                        const result_json = await response.json();
+                        const pred = result_json.prediction;     
+                        alert(pred);
                     } catch (error) {
                         console.error('Erro:', error);
                     }
